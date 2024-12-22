@@ -1,7 +1,9 @@
 package com.Elgaddari;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
@@ -75,6 +77,17 @@ public class PersonService {
                                 iterator.remove(); // Secured
                         }
                 }
+                return people;
+        }
+
+        public static List<Person> SortPeople() {
+                List<Person> people = new ArrayList<>();
+                people.add(Person.builder().firstName("abdeljabbar").familyName("chleih").build());
+                people.add(Person.builder().firstName("abdellah").familyName("adison").build());
+                people.add(Person.builder().firstName("hamza").familyName("chleih").build());
+
+                Collections.sort(people);
+
                 return people;
         }
 }

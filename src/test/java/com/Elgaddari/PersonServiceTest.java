@@ -1,6 +1,7 @@
 package com.Elgaddari;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.ConcurrentModificationException;
 import java.util.HashSet;
@@ -56,5 +57,18 @@ public class PersonServiceTest {
         Set<Person> peopleWithoutAdison = PersonService.removeAdisonUsingIterator();
 
         assertThat(peopleWithoutAdison).containsExactlyInAnyOrderElementsOf(expectedPeopleWithoutAdison);
+    }
+
+    @Test
+    public void testSortPeople() {
+        List<Person> expectedPeople = new ArrayList<>();
+        expectedPeople.add(Person.builder().firstName("abdellah").familyName("adison").build());
+        expectedPeople.add(Person.builder().firstName("abdeljabbar").familyName("chleih").build());
+        expectedPeople.add(Person.builder().firstName("hamza").familyName("chleih").build());
+
+        List<Person> peopleSorted = PersonService.SortPeople();
+
+        assertThat(peopleSorted).isEqualTo(expectedPeople);
+
     }
 }
