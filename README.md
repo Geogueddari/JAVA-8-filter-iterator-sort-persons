@@ -1,0 +1,1 @@
+This is a Maven-based project in which I am implementing and testing various functionalities of the Person class to ensure its methods, such as comparison, age calculation, and object representation, work as expected
