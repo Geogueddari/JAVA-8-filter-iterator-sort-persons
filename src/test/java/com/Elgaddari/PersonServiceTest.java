@@ -3,7 +3,9 @@ package com.Elgaddari;
 import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.ConcurrentModificationException;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -43,5 +45,16 @@ public class PersonServiceTest {
     public void testRemoveAdisonWithoutIterator() {
         assertThatThrownBy(() -> PersonService.removeAdisonWithoutIterator())
                 .isInstanceOf(ConcurrentModificationException.class);
+    }
+
+    @Test
+    public void testRemoveAdisonUsingIterator() {
+        Set<Person> expectedPeopleWithoutAdison = new HashSet<>();
+        expectedPeopleWithoutAdison.add(Person.builder().firstName("abdeljabbar").familyName("elgaddari").build());
+        expectedPeopleWithoutAdison.add(Person.builder().firstName("hamza").familyName("chleih").build());
+
+        Set<Person> peopleWithoutAdison = PersonService.removeAdisonUsingIterator();
+
+        assertThat(peopleWithoutAdison).containsExactlyInAnyOrderElementsOf(expectedPeopleWithoutAdison);
     }
 }

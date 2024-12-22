@@ -3,6 +3,7 @@ package com.Elgaddari;
 import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 import java.util.function.Predicate;
@@ -56,6 +57,22 @@ public class PersonService {
                 for (Person person : people) {
                         if (person.getFamilyName().equals("adison")) {
                                 people.remove(person); // concurrentModificationException
+                        }
+                }
+                return people;
+        }
+
+        public static Set<Person> removeAdisonUsingIterator() {
+                Set<Person> people = new HashSet<>();
+                people.add(Person.builder().firstName("abdeljabbar").familyName("elgaddari").build());
+                people.add(Person.builder().firstName("abdellah").familyName("adison").build());
+                people.add(Person.builder().firstName("hamza").familyName("chleih").build());
+
+                Iterator<Person> iterator = people.iterator();
+                while (iterator.hasNext()) {
+                        Person person = iterator.next();
+                        if (person.getFamilyName().equals("adison")) {
+                                iterator.remove(); // Secured
                         }
                 }
                 return people;
