@@ -2,7 +2,9 @@ package com.Elgaddari;
 
 import java.time.LocalDate;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
@@ -43,5 +45,19 @@ public class PersonService {
                 return mockPersonsDatabase.stream()
                                 .filter(isAdult)
                                 .collect(Collectors.toList());
+        }
+
+        public static Set<Person> removeAdisonWithoutIterator() {
+                Set<Person> people = new HashSet<>();
+                people.add(Person.builder().firstName("abdeljabbar").familyName("elgaddari").build());
+                people.add(Person.builder().firstName("abdellah").familyName("adison").build());
+                people.add(Person.builder().firstName("hamza").familyName("chleih").build());
+
+                for (Person person : people) {
+                        if (person.getFamilyName().equals("adison")) {
+                                people.remove(person); // concurrentModificationException
+                        }
+                }
+                return people;
         }
 }

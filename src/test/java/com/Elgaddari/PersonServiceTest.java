@@ -2,9 +2,11 @@ package com.Elgaddari;
 
 import java.time.LocalDate;
 import java.util.Arrays;
+import java.util.ConcurrentModificationException;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import org.junit.Test;
 
 public class PersonServiceTest {
@@ -35,5 +37,11 @@ public class PersonServiceTest {
                         .address("F1").build());
 
         assertThat(adultPersons).containsExactlyInAnyOrderElementsOf(expectedAdultPersons);
+    }
+
+    @Test
+    public void testRemoveAdisonWithoutIterator() {
+        assertThatThrownBy(() -> PersonService.removeAdisonWithoutIterator())
+                .isInstanceOf(ConcurrentModificationException.class);
     }
 }
