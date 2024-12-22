@@ -21,4 +21,19 @@ public class PersonServiceTest {
 
         assertThat(peopleLivingInF1).containsExactlyInAnyOrderElementsOf(expectedPeopleLivingInF1);
     }
+
+    @Test
+    public void testFilterAdults() {
+        List<Person> adultPersons = PersonService.filterAdults();
+
+        List<Person> expectedAdultPersons = Arrays.asList(
+                Person.builder().firstName("abdeljabbar").familyName("elgaddari")
+                        .birthDate(LocalDate.of(2004, 4, 5))
+                        .address("F1").build(),
+                Person.builder().firstName("hamza").familyName("chleih")
+                        .birthDate(LocalDate.of(2003, 10, 15))
+                        .address("F1").build());
+
+        assertThat(adultPersons).containsExactlyInAnyOrderElementsOf(expectedAdultPersons);
+    }
 }
